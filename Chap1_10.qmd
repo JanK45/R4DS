@@ -1,0 +1,52 @@
+---
+title: "The Whole Game"
+subtitle: "Chapters 1 - 10"
+format: html
+editor: visual
+---
+
+```{r}
+
+library(tidyverse)
+#install.packages(
+#  c("arrow", "babynames", "duckdb", "gapminder", 
+#    "ggrepel", "ggridges", "ggthemes", "hexbin", "Lahman", 
+#    "leaflet", "maps", "nycflights13", "openxlsx", #"palmerpenguins", 
+#    "repurrrsive", "tidymodels", "writexl")
+#  )
+
+lapply(c("arrow", "babynames", "curl", "duckdb", "gapminder", 
+"ggrepel", "ggridges", "ggthemes", "hexbin", "janitor", "Lahman", 
+"leaflet", "maps", "nycflights13", "openxlsx", "palmerpenguins", 
+"repurrrsive", "tidymodels", "writexl"), library, character.only = TRUE)
+```
+
+## Data Visualization
+
+### Creating a ggplot
+
+Der Befehl `ggplot(data)` erzeugt lediglich ein leeres Bild, mit mehr Befehlen immer weiter gefüllt wird. Geben wir zusätzlich `aes(x = X-Achse und y = Y-Achse)` an, wird das entsprechende Koordinatensystem gezeichnet. Um die Daten jetzt auch auf dieses zu übertragen, benötigt es ein `geom_` - Element. In diesem Fall `geom_point`, um ein Scatterplot zu erstelllen.\
+Die grundsätzlichen Elemente sind:
+
+-   `geom_bar()` -\>Barchart
+
+-   `geom_line()` -\>Linechart
+
+-   `geom_boxplot()` -\> Boxplot
+
+-   `geom_point()` -\> Scatterplot
+
+```{r}
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g))+
+  geom_point()
+```
+
+### Optische Veränderungen und Ebenen
+
+Über die `color` - Option innerhalb von `aes()` lassen sich die Werte nach bestimten Variablen einfärben.
+
+```{r}
+
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g,  color=species))+
+  geom_point()
+```
